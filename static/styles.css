@@ -1,28 +1,109 @@
-.container {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px;
+/* styles.css */
+
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
 }
 
-.left, .right {
-  width: 45%;
+body {
+    font-family: 'Pacifico', cursive;
+    line-height: 1.6;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+nav ul {
+    list-style: none;
+    display: flex;
 }
 
-th {
-  background-color: #f2f2f2;
+nav li {
+    margin-right: 20px;
 }
 
-button {
-  margin-top: 10px;
+nav a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#logoMain {
+    width: 200px;
+}
+
+/* Main Content Sections */
+.main-section,
+.three-columns-different-width,
+.three-columns-same-width,
+.four-columns-section,
+.missed-it-section {
+    margin: 20px;
+}
+
+.block {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Columns within sections */
+.column {
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+/* Different column widths */
+.wide {
+    width: 90%;
+}
+
+.medium {
+    width: 60%;
+}
+
+.narrow {
+    width: 40%;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 500px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav {
+        margin-top: 10px;
+    }
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.column {
+    flex: 0 1 30%;
+    padding: 10px;
+}
+
+.last-footer {
+    margin-top: 20px;
+    text-align: center;
 }

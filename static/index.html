@@ -1,61 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Person Management</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Instrumental Music Education</title>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <h2>Person List</h2>
-      <table id="person-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>City</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Table rows will be dynamically added here -->
-        </tbody>
-      </table>
-    </div>
-    <div class="right">
-      <h2>Add/Update Person</h2>
-      <form id="person-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select><br>
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required><br>
-        <label for="city">City:</label>
-        <select id="city" name="city" required>
-          <option value="New York">New York</option>
-          <option value="Los Angeles">Los Angeles</option>
-          <option value="Chicago">Chicago</option>
-          <option value="Houston">Houston</option>
-          <!-- Add more cities here if needed -->
-        </select><br>
-        <button type="reset" id="reset-btn">Reset</button>
-        <button type="submit" id="add-update-btn">Add</button>
-      </form>
-      <a href="/requestheaders">Request Headers</a>
-      <a href="/allheaders">allheaders</a>
-      <a href="/httpmethod">httpmethod</a>
-    </div>
-  </div>
-  <!-- Add a div to display last manipulated data -->
-  <div id="last-manipulated-data"></div>
+    <!-- Navigation Bar -->
+    <header>
 
-  <script src="script.js"></script>
+        <div class="logo">
+            <img id="logoMain" src="images/logo1.png" alt="Logo 1">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="lessons/lessons.html">Lessons</a></li>
+                <li><a href="practice/practice.html">Practice</a></li>
+                <li><a href="#">Virtual Lessons</a></li>
+                <li><a href="#">Progress Tracker</a></li>
+                <li><a href="/login">login</a></li>
+                <li><a href="/reg">reg</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="main-section block">
+        <h2>Welcome to Instrumental Music Education</h2>
+        <p>This platform is designed to help aspiring musicians, music students, and educators in learning and teaching instrumental music. Whether you're a beginner or an experienced player, we have lessons and resources tailored to your needs.</p>
+    </section>
+
+    <!-- 3 Columns of Different Width -->
+   <!-- 3 Columns of Different Width -->
+<section class="three-columns-different-width block">
+    <!-- Content for three columns goes here -->
+    <div class="column wide">
+        <h3>Exploring Instruments</h3>
+        <p>Delve into the diverse world of musical instruments. Learn about the history, techniques, and unique characteristics of different instruments, from classical to contemporary.</p>
+    </div>
+    <div class="column narrow">
+        <h3>Mastering Techniques</h3>
+        <p>Refine your playing techniques with expert guidance. Explore intricate fingerpicking patterns, chord progressions, and advanced playing styles to elevate your musical proficiency.</p>
+    </div>
+    <div class="column medium">
+        <h3>Music Theory Fundamentals</h3>
+        <p>Build a strong foundation in music theory. Understand key concepts, notation, scales, and harmonies that will enhance your ability to read and create music.</p>
+    </div>
+</section>
+
+<!-- 3 Columns of Same Width -->
+<section class="three-columns-same-width block">
+    <!-- Content for three columns goes here -->
+    <div class="column">
+        <h3>Practice Sessions</h3>
+        <p>Dedicate time to focused practice sessions tailored to your skill level. Our interactive modules provide exercises and drills to strengthen your musical skills and boost confidence.</p>
+    </div>
+    <div class="column">
+        <h3>Virtual Classroom Experience</h3>
+        <p>Immerse yourself in virtual lessons led by experienced instructors. Receive personalized feedback, ask questions, and engage with a supportive community of fellow learners.</p>
+    </div>
+    <div class="column">
+        <h3>Progress Tracking Tools</h3>
+        <p>Monitor your musical journey with our progress tracking tools. Set goals, track achievements, and celebrate milestones as you progress through your courses and lessons.</p>
+    </div>
+</section>
+
+<!-- 4 Columns Section -->
+<section class="four-columns-section block">
+    <!-- Content for four columns goes here -->
+    <div class="column wide">
+        <h3>Musical Exploration</h3>
+        <p>Embark on a journey of musical exploration. Dive into different genres, discover the cultural influences behind each style, and broaden your musical horizons.</p>
+    </div>
+    <div class="column narrow">
+        <h3>Community Collaboration</h3>
+        <p>Connect with fellow musicians and educators in our vibrant community. Collaborate on projects, share insights, and build lasting relationships with like-minded individuals.</p>
+    </div>
+    <div class="column medium">
+        <h3>Creative Composition</h3>
+        <p>Unlock your creativity through composition. Learn the art of creating your own music, experiment with songwriting, and express your unique musical voice.</p>
+    </div>
+    <div class="column">
+        <h3>Expert-Led Workshops</h3>
+        <p>Participate in workshops led by industry experts. Gain valuable insights, learn advanced techniques, and stay updated on the latest trends in the world of instrumental music.</p>
+    </div>
+</section>
+
+    <!-- "In Case You Missed It" Section -->
+    <section class="missed-it-section block">
+        <!-- Content for "In Case You Missed It" goes here -->
+        <h2>In Case You Missed It</h2>
+        <p>Stay updated with our latest lessons, tips, and news. Check out our featured content below:</p>
+        <div class="featured-content">
+            <div class="feature wide">
+                <h3>Featured Lesson 1</h3>
+                <p>Description for Featured Lesson 1.</p>
+            </div>
+            <div class="feature narrow">
+                <h3>Featured Lesson 2</h3>
+                <p>Description for Featured Lesson 2.</p>
+            </div>
+            <div class="feature medium">
+                <h3>News Update</h3>
+                <p>Stay informed about upcoming events and announcements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- 6 Columns Footer -->
+        <div class="footer-columns block">
+            <!-- Content for six columns footer goes here -->
+            <div class="column">
+                <h3>Contact Us</h3>
+                <p>Feel free to reach out for any inquiries or feedback.</p>
+            </div>
+            <div class="column">
+                <h3>Follow Us</h3>
+                <p>Connect with us on social media for updates.</p>
+            </div>
+            <div class="column">
+                <h3>Terms of Service</h3>
+                <p>Read our terms and conditions for using the platform.</p>
+            </div>
+            <div class="column">
+                <h3>Privacy Policy</h3>
+                <p>Learn about how we handle your personal information.</p>
+            </div>
+            <div class="column">
+                <h3>FAQs</h3>
+                <p>Find answers to frequently asked questions.</p>
+            </div>
+            <div class="column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest updates.</p>
+            </div>
+        </div>
+
+        <!-- Last Footer -->
+        <div class="last-footer block">
+            <!-- Content for the last footer goes here -->
+            <p>&copy; 2024 Instrumental Music Education. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
