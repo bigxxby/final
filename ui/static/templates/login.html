@@ -35,20 +35,12 @@
     </style>
 </head>
 <body>
-<form action="/registration_handler" method="POST">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-
-    <label for="surname">Surname:</label>
-    <input type="text" id="surname" name="surname" required>
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-
-    <input type="submit" value="Register">
-</form>
+    <form action="/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <input type="submit" value="Register">
+    </form>
 </body>
 </html>
