@@ -186,5 +186,5 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Bad request", http.StatusBadRequest)
 		return
 	}
-	err := UpdateUserById(id)
+	err := UpdateUserById(id) // ПРОДОЛЖИТЬ АПДЕЙТ ЮЗЕРОВ
 }
