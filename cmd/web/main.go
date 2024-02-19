@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
 	test "test/internal"
 )
 
@@ -15,8 +16,11 @@ func main() {
 	http.HandleFunc("/", test.MainHandler)
 	http.HandleFunc("/login", test.LoginHandler)
 	http.HandleFunc("/reg", test.RegHandler)
+	http.HandleFunc("/admin", test.AdminPage)
+	http.HandleFunc("/delete", test.DeleteHandler)
+	http.HandleFunc("/create", test.CreateUser)
+	http.HandleFunc("/update", test.UpdateUser)
 
 	log.Println("Server started on http://localhost:8080/")
 	http.ListenAndServe(":8080", nil)
-
 }

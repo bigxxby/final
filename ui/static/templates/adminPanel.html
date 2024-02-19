@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/admin.css">
+    
+    <title>Админ Панель</title>
+</head>
+<body>
+    
+    <script src="static/scripts/adminPanel.js"></script>
+    <h2>Админ Панель - Пользователи</h2>
+    
+    <!-- Форма для создания нового пользователя -->
+    <h3>Создать пользователя</h3>
+    <form action="/create" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    
+        <label for="surname">Surname:</label>
+        <input type="text" id="surname" name="surname" required>
+    
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="checkbox">Is Admin</label>
+        <input type="checkbox" name="checkbox">
+        <input type="submit" value="Add User">
+    </form>
+
+    <!-- Таблица для отображения всех пользователей -->
+    <h3>Список пользователей</h3>
+    <table>
+        {{ range . }}
+        <tr>
+            <th>Id : {{ .ID }}</th>
+            <th>Name : {{ .Name }}</th>
+            <th>Email : {{.Email}}</th>
+            <th>Surname : {{.Surname}}</th>
+            <th>Password : {{.Password}}</th>
+            <th>isAdmin : {{.IsAdmin}}</th>
+            <th>SessionId: {{.SessionId}}</th>
+            <th><button onclick="openModal()">Update</button></th>
+            
+            
+            
+            <!-- Окно для изменения пользователя -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Update User</h2>
+                    <form action="/update"  method="post">
+                        <input type="hidden" name="id" required value="{{.ID}}">
+                        Name: <input type="text" name="name"  value="{{ .Name }}" required><br>
+                        Surname: <input type="text" name="surname" value="{{ .Surname }}" required><br>
+                        Email: <input type="email" name="email" value="{{ .Email }}" required><br>
+                        Password: <input type="password" name="password" value="{{ .Password }}"required><br>
+                        isAdmin: <input type="checkbox"  name="isAdmin">
+                        <br>
+                        <input type="submit" value="Update">
+                    </form>
+                </div>
+            </div>
+
+
+
+            <th>
+                <form action="/delete" method="post">
+                    <input type="hidden" name="id" value="{{.ID}}">
+                    <button type="submit">Delete</button>
+                </form>
+            </th>
+        </tr>
+        {{end}}
+        <!-- Здесь будут другие строки для других пользователей -->
+    </table>
+</body>
+</html>

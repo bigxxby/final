@@ -27,3 +27,4 @@ func Registration(w http.ResponseWriter, r *http.Request) (myDatabase.User, erro
 	http.Redirect(w, r, "/login", http.StatusSeeOther)
 	return user, nil
 }
+

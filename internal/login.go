@@ -3,10 +3,11 @@ package test
 import (
 	"database/sql"
 	"errors"
+	"fmt"
 	"log"
 	"net/http"
+
 	"test/internal/myDatabase"
-	"time"
 
 	"github.com/gofrs/uuid"
 )
@@ -30,9 +31,8 @@ func Login(w http.ResponseWriter, r *http.Request) (*myDatabase.User, error) {
 		return nil, err
 	}
 	cookie := http.Cookie{
-		Name:    "session_id",
-		Value:   sessionid,
-		Expires: time.Now().Add(24 * time.Hour),
+		Name:  "session_id",
+		Value: sessionid,
 	}
 	http.SetCookie(w, &cookie)
 	user.IsLogged = true
@@ -45,6 +45,7 @@ func Login(w http.ResponseWriter, r *http.Request) (*myDatabase.User, error) {
 
 	return user, nil
 }
+
 func generateUuid() (string, error) {
 	sessionId, err := uuid.NewV4()
 	if err != nil {
@@ -52,5 +53,31 @@ func generateUuid() (string, error) {
 		return "", err
 	}
 	return sessionId.String(), nil
+}
 
+func isAuthenticated(r *http.Request) (bool, *myDatabase.User) {
+	cookie, err := r.Cookie("session_id")
+	if err != nil || cookie.Value == "" {
+		fmt.Println("COOCKIE ERROR")
+		return false, nil
+	}
+	userID := db.FindUserIdBySessionId(cookie.Value)
+	if userID == -1 {
+		log.Println("NOT FOUND COOCKIES ERROR")
+		// Сессия не найдена в хранилище, пользователь не аутентифицирован.
+		return false, nil
+	}
+	// Получаем информацию о пользователе из вашего хранилища.
+	user, err := db.GetUserByID(userID)
+	if err != nil {
+		log.Println("NOT FOUND USER ERROR")
+		// Ошибка при получении информации о пользователе.
+		return false, nil
+	}
+
+	log.Println("ALL GOOD 200")
+	// Пользователь аутентифицирован.
+	user.Password = ""
+	user.IsLogged = true
+	return true, user
 }

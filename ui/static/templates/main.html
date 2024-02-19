@@ -19,6 +19,23 @@
                 <li><a href="practice/practice.html">Practice</a></li>
                 <li><a href="#">Virtual Lessons</a></li>
                 <li><a href="#">Progress Tracker</a></li>
+                <li><a href="/profile">
+                    Your Profile:
+                    {{if .IsLogged}}
+                    <div class="isLogged">
+                        <p>{{ .Name }}</p>
+                        <p>{{ .Surname }}</p>
+                        <p>{{ .Email }}</p>
+
+
+                    </div>
+                    {{else}}
+                    <p> Unauthorised </p>
+                    {{end}}
+
+                </a></li>
+
+                
                 <li><a href="/login">login</a></li>
                 <li><a href="/reg">reg</a></li>
             </ul>
