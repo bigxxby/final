@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/main.css">
     <title>Instrumental Music Education</title>
 </head>
 <body>
+    <script src="static/scripts/main.js"></script>
     <header>
 
         <div class="logo">
@@ -26,8 +27,6 @@
                         <p>{{ .Name }}</p>
                         <p>{{ .Surname }}</p>
                         <p>{{ .Email }}</p>
-
-
                     </div>
                     {{else}}
                     <p> Unauthorised </p>
@@ -36,8 +35,8 @@
                 </a></li>
 
                 
-                <li><a href="/login">login</a></li>
-                <li><a href="/reg">reg</a></li>
+                <li><a href="/login">Sign Up</a></li>
+                <li><a href="/reg">Sign In</a></li>
             </ul>
         </nav>
     </header>
@@ -124,7 +123,25 @@
             </div>
         </div>
     </section>
+    <div  class="chatbot-container">
 
+            <div  class="chatbot-header">
+                <span class="chatbot-title">Chatbot</span>
+                <button class="chatbot-toggle-btn" onclick="toggleChatbot()">X</button>
+            </div>
+            <div class="chatbot-body" id="chatbot-body">
+                <!-- Chatbot messages will appear here -->
+                MusicAiBot: Hello! How can i assist you?
+                MusicAiBot: Ask any question
+                
+
+            </div>
+            <div id="chatbot-footer" class="chatbot-footer">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button type="submit" onclick="sendMessage()">Send</button>
+            </div>
+    </div>
+    
     <!-- Footer -->
     <footer>
         <!-- 6 Columns Footer -->
@@ -154,6 +171,7 @@
                 <h3>Newsletter</h3>
                 <p>Subscribe to our newsletter for the latest updates.</p>
             </div>
+
         </div>
 
         <!-- Last Footer -->

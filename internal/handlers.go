@@ -1,7 +1,9 @@
 package test
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strconv"
@@ -194,4 +196,75 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	}
 	log.Println("Edited user successfully")
 	http.Redirect(w, r, "/admin", http.StatusSeeOther)
+}
+
+type Message struct {
+	Message string `json:"message"`
+}
+
+func MessageHandler(w http.ResponseWriter, r *http.Request) {
+	// Проверяем метод запроса
+	if r.Method != "POST" {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// Читаем тело запроса
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Unable to read request body", http.StatusInternalServerError)
+		return
+	}
+
+	// Декодируем JSON
+	var message Message
+	if err := json.Unmarshal(body, &message); err != nil {
+		http.Error(w, "Unable to decode JSON", http.StatusBadRequest)
+		return
+	}
+
+	// Получаем значение сообщения
+	receivedMessage := message.Message
+	fmt.Println("Received message:", receivedMessage)
+
+	// Формируем URL для отправки запроса к Wit.ai
+	url := "https://api.wit.ai/message?v=20240220&q=" + receivedMessage
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+	witAccessToken := "UVJRI7BCS4FOHCMPRMPUZBXUM5GJBHC6"
+
+	// Устанавливаем заголовок с токеном доступа к Wit.ai API
+	req.Header.Set("Authorization", "Bearer "+witAccessToken)
+
+	// Отправляем запрос к Wit.ai
+	client := http.DefaultClient
+	resp, err := client.Do(req)
+	if err != nil {
+		http.Error(w, "Failed to send request to Wit.ai", http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Декодируем ответ от Wit.ai
+	var witResponse WitResponse
+	if err := json.NewDecoder(resp.Body).Decode(&witResponse); err != nil {
+		http.Error(w, "Failed to decode response from Wit.ai", http.StatusInternalServerError)
+		return
+	}
+	log.Println("Response : ", witResponse)
+	// Выводим текст ответа от Wit.ai
+	fmt.Fprintf(w, "Wit.ai response: %s\n", witResponse.Text)
+
+	// Отправляем ответ клиенту
+	// w.WriteHeader(http.StatusOK) // Убираем эту строку, так как WriteHeader уже вызван в Fprintf
+	// w.Write([]byte("Message received successfully")) // Эту строку тоже убираем
+}
+
+type WitResponse struct {
+	MsgId string `json:"msg_id"`
+	Text  string `json:"_text"`
 }
