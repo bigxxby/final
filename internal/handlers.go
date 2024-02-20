@@ -192,4 +192,6 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal server error", 500)
 		return
 	}
+	log.Println("Edited user successfully")
+	http.Redirect(w, r, "/admin", http.StatusSeeOther)
 }

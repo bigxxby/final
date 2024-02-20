@@ -174,7 +174,7 @@ func (db *Database) DeleteUserById(userId string) {
 
 func (db *Database) UpdateUserById(id int, name, surname, email, password string, isAdmin int) error {
 	// Prepare the UPDATE statement
-	stmt, err := db.Connection.Prepare("UPDATE users SET name=?, surname=?, email=?, password=?, isAdmin=? WHERE id = ?")
+	stmt, err := db.Connection.Prepare("UPDATE users SET name=?, surname=?, email=?, password=?, is_admin=? WHERE id = ?")
 	if err != nil {
 		log.Println(err.Error())
 		return err
