@@ -171,3 +171,22 @@ func (db *Database) DeleteUserById(userId string) {
 		log.Fatal(err)
 	}
 }
+
+func (db *Database) UpdateUserById(id int, name, surname, email, password string, isAdmin int) error {
+	// Prepare the UPDATE statement
+	stmt, err := db.Connection.Prepare("UPDATE users SET name=?, surname=?, email=?, password=?, isAdmin=? WHERE id = ?")
+	if err != nil {
+		log.Println(err.Error())
+		return err
+	}
+	defer stmt.Close()
+
+	// Execute the UPDATE statement
+	_, err = stmt.Exec(name, surname, email, password, isAdmin, id)
+	if err != nil {
+		log.Println(err.Error())
+		return err
+	}
+
+	return nil
+}

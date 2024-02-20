@@ -181,10 +181,15 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	if r.FormValue("isAdmin") == "on" {
 		isAdmin = 1
 	}
-	err := strconv.Atoi(id)
+	numId, err := strconv.Atoi(id)
 	if err != nil {
 		http.Error(w, "Bad request", http.StatusBadRequest)
 		return
 	}
-	err := UpdateUserById(id) // ПРОДОЛЖИТЬ АПДЕЙТ ЮЗЕРОВ
+	err = db.UpdateUserById(numId, name, surname, email, password, isAdmin) // ПРОДОЛЖИТЬ АПДЕЙТ ЮЗЕРОВ
+	if err != nil {
+		log.Println("Error updatiing user : ", err.Error())
+		http.Error(w, "Internal server error", 500)
+		return
+	}
 }
