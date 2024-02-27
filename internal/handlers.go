@@ -25,13 +25,18 @@ func MainHandler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Method not allowed"))
 		return
 	}
-	_, user := isAuthenticated(r)
-
+	boolean, user := isAuthenticated(r)
+	if !boolean {
+		user = &myDatabase.User{IsLogged: false}
+	} else {
+		user.IsLogged = true
+	}
 	data, err := template.ParseFiles("ui/static/templates/main.html")
 	if err != nil {
 		log.Println(err)
 		return
 	}
+
 	data.Execute(w, user)
 }
 
