@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <title>Instrumental Music Education</title>
+</head>
+
+<body>
+    <script src="static/scripts/main.js"></script>
+    <header>
+
+        <div class="logo">
+            <img id="logoMain" src="/static/images/logo1.png" alt="Logo 1">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Virtual Lessons</a></li>
+                <li><a href="/chord">Chord Trainer</a></li>
+
+                <li><a href="/login">Sign Up</a></li>
+                <li><a href="/reg">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main Content Section -->
+    <section class="main-section block">
+        <h2>Guitar Lessions</h2>
+        <p>Jump right in and get to the fun stuff! In Fundamentals Course 1 you’ll learn how to play guitar chords, some
+            killer riffs, a few cornerstone guitar scales, guitar strumming and rhythm, how to use a guitar tuner and
+            much more so you can get started making music. Don’t forget the toolbox with a guitar chord chart, a guitar
+            scale finder, an online guitar tuner and more tools that make learning to play guitar easy. Welcome to
+            Guitar Tricks!</p>
+            
+        <h3>Please select your level of Guitar skills</h3>
+        <button onclick="selectLevel('beginner')">Beginner</button>
+        <button onclick="selectLevel('intermediate')">Intermediate</button>
+        <button onclick="selectLevel('advanced')">Advanced</button>
+    </section>
+    <script>
+        function selectLevel(text) {
+            if (text === 'beginner') {
+                window.location.href = '/beginner'; // Замените 'beginner_page.html' на URL страницы для начинающих
+            } else if (text === 'intermediate') {
+                window.location.href = '/intermediate'; // Замените 'intermediate_page.html' на URL страницы для среднего уровня
+            } else if (text === 'advanced') {
+                window.location.href = '/advanced'; // Замените 'advanced_page.html' на URL страницы для продвинутого уровня
+            }
+        }
+    </script>
+
+
+
+    <section class="three-columns-different-width block">
+        <!-- Content for three columns goes here -->
+        <div class="column wide">
+            <h3>Exploring Instruments</h3>
+            <p>Delve into the diverse world of musical instruments. Learn about the history, techniques, and unique
+                characteristics of different instruments, from classical to contemporary.</p>
+        </div>
+        <div class="column narrow">
+            <h3>Mastering Techniques</h3>
+            <p>Refine your playing techniques with expert guidance. Explore intricate fingerpicking patterns, chord
+                progressions, and advanced playing styles to elevate your musical proficiency.</p>
+        </div>
+        <div class="column medium">
+            <h3>Music Theory Fundamentals</h3>
+            <p>Build a strong foundation in music theory. Understand key concepts, notation, scales, and harmonies that
+                will enhance your ability to read and create music.</p>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <!-- 6 Columns Footer -->
+        <div class="footer-columns block">
+            <!-- Content for six columns footer goes here -->
+            <div class="column">
+                <h3>Contact Us</h3>
+                <p>Feel free to reach out for any inquiries or feedback.</p>
+            </div>
+            <div class="column">
+                <h3>Follow Us</h3>
+                <p>Connect with us on social media for updates.</p>
+            </div>
+            <div class="column">
+                <h3>Terms of Service</h3>
+                <p>Read our terms and conditions for using the platform.</p>
+            </div>
+            <div class="column">
+                <h3>Privacy Policy</h3>
+                <p>Learn about how we handle your personal information.</p>
+            </div>
+            <div class="column">
+                <h3>FAQs</h3>
+                <p>Find answers to frequently asked questions.</p>
+            </div>
+            <div class="column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest updates.</p>
+            </div>
+
+        </div>
+
+        <!-- Last Footer -->
+        <div class="last-footer block">
+            <!-- Content for the last footer goes here -->
+            <p>&copy; 2024 Instrumental Music Education. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

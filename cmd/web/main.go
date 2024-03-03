@@ -21,6 +21,10 @@ func main() {
 	http.HandleFunc("/create", test.CreateUser)
 	http.HandleFunc("/update", test.UpdateUser)
 	http.HandleFunc("/message", test.MessageHandler)
+	http.HandleFunc("/chord", test.ChordHandler)
+	http.HandleFunc("/guitar", test.GuitarHandler)
+	http.HandleFunc("/beginner", test.BeginnerHandler)
+	http.HandleFunc("/metronome", test.MetronomeHandler)
 
 	log.Println("Server started on http://localhost:8080/")
 	http.ListenAndServe(":8080", nil)

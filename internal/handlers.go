@@ -268,6 +268,55 @@ func MessageHandler(w http.ResponseWriter, r *http.Request) {
 	// w.WriteHeader(http.StatusOK) // Убираем эту строку, так как WriteHeader уже вызван в Fprintf
 	// w.Write([]byte("Message received successfully")) // Эту строку тоже убираем
 }
+func ChordHandler(w http.ResponseWriter, r *http.Request) {
+	data, err := template.ParseFiles("ui/static/templates/chordPanel.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	data.Execute(w, nil)
+}
+
+func GuitarHandler(w http.ResponseWriter, r *http.Request) {
+	data, err := template.ParseFiles("ui/static/templates/guitar.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	data.Execute(w, nil)
+}
+func BeginnerHandler(w http.ResponseWriter, r *http.Request) {
+	data, err := template.ParseFiles("ui/static/templates/beginner.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	data.Execute(w, nil)
+}
+func IntermediateHandler(w http.ResponseWriter, r *http.Request) {
+	data, err := template.ParseFiles("ui/static/templates/intermediate.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	data.Execute(w, nil)
+}
+func AdvancedHandler(w http.ResponseWriter, r *http.Request) {
+	data, err := template.ParseFiles("ui/static/templates/advanced.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	data.Execute(w, nil)
+}
+func MetronomeHandler(w http.ResponseWriter, r *http.Request) {
+	data, err := template.ParseFiles("ui/static/templates/metronome.html")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	data.Execute(w, nil)
+}
 
 type WitResponse struct {
 	MsgId string `json:"msg_id"`

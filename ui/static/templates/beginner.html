@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Lessons</title>
+</head>
+<body>
+    <header>
+
+        <div class="logo">
+            <img id="logoMain" src="/static/images/logo1.png" alt="Logo 1">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/metronome">Metronome</a></li>
+                
+                <li><a href="/chord">Chord Trainer</a></li>
+                <li><a href="/profile">
+                    Your Profile:
+                    {{if .IsLogged}}
+                    <div class="isLogged">
+                        <p>{{ .Name }}</p>
+                        <p>{{ .Surname }}</p>
+                        <p>{{ .Email }}</p>
+                        <li><a href="/guitar">Virtual Lessons</a></li>
+                    </div>
+                    {{else}}
+                    <p> Unauthorised </p>
+                    {{end}}
+
+                </a></li>
+
+                
+                <li><a href="/login">Sign Up</a></li>
+                <li><a href="/reg">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="main-section block">
+        <h2>Guitar Lessons</h2>
+        <p>Jump right in and get to the fun stuff! In Fundamentals Course 1 you’ll learn how to play guitar chords, some
+            killer riffs, a few cornerstone guitar scales, guitar strumming and rhythm, how to use a guitar tuner and
+            much more so you can get started making music. Don’t forget the toolbox with a guitar chord chart, a guitar
+            scale finder, an online guitar tuner and more tools that make learning to play guitar easy. Welcome to
+            Guitar Tricks!</p>
+
+        <h1>Guitar Learning Curriculum</h1>
+
+        <h2>CHAPTER: 1: GETTING FAMILIAR WITH YOUR INSTRUMENT</h2>
+    <!-- Замените 'YOUR_VIDEO_ID' на реальный идентификатор вашего видео на YouTube -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=_QCt3UBTS1Y&list=PLlwfspJqZ126JHOY5rTkKCSAp2Ua907-v&ab_channel=JustinGuitar"  allowfullscreen></iframe>
+        <p>In this chapter you will learn the names of the strings and how to tune your guitar. After that you will be
+            ready
+            to learn the basic mechanics of fretting and picking and strumming notes. Also included in this first
+            chapter
+            are beginner chords.</p>
+        <h3>Recommended Songs</h3>
+        <p>Now that you know some open chords, jump right in to some easy guitar songs like Speed of the Sound of
+            Loneliness
+            (Made Easy), Wooly Bully (Made Easy), and Perfect (Made Easy).</p>
+
+        <table>
+            <caption>ARTIST / TITLE / PROGRESS</caption>
+            <tr>
+                <th>INSTRUCTOR</th>
+                <th>DIFFICULTY</th>
+                <th>STYLE</th>
+            </tr>
+            <tr>
+                <td>Anders Mouridsen</td>
+                <td>BEGIN</td>
+                <td>Any Style</td>
+            </tr>
+        </table>
+
+        <p>In this first tutorial of Guitar Fundamentals we'll learn proper posture and how to hold the guitar. We will
+            also
+            learn how to use the tuning pegs and tune up, then learn the string names: Eddie Ate Dynamite, Goodbye
+            Eddie!
+            Once we're tuned up and in position we'll look at how to navigate the fretboard using string names and fret
+            numbers, while also exploring about how to best fret notes. You can start out using just your index finger,
+            but
+            after that you should try using your other 3 fingers as well.</p>
+
+        <p><strong>Anders Mouridsen</strong></p>
+        <ul>
+            <li>Tuning And Playing Notes</li>
+            <li>Simple Chords</li>
+            <li>Playing With Fingers or Pick</li>
+            <li>Chords On All Six Strings</li>
+            <li>More Chords</li>
+            <li>Switching Between Chords</li>
+        </ul>
+        <h2>CHAPTER: 2: LEARNING RHYTHM</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=X2EmpWr9vUc&list=PLlwfspJqZ126JHOY5rTkKCSAp2Ua907-v&index=3&ab_channel=JustinGuitar
+        "  allowfullscreen></iframe>
+        <p>In this chapter you will learn the basics of rhythm: counting in time, rhythmic subdivisions. After that you
+            will learn to apply those rhythms to basic strumming patterns using basic chords. You will also learn how to
+            use a metronome.</p>
+
+        <table>
+            <caption>ARTIST / TITLE / PROGRESS</caption>
+            <tr>
+                <th>INSTRUCTOR</th>
+                <th>DIFFICULTY</th>
+                <th>STYLE</th>
+            </tr>
+            <tr>
+                <td>Anders Mouridsen</td>
+                <td>BEGIN</td>
+                <td>Any Style</td>
+            </tr>
+        </table>
+
+        <p><strong>Recommended Songs</strong></p>
+        <p>Practice your new single-note skills with these melodies: The Star Spangled Banner, Simple Melodies for
+            Classical Guitar, More Simple Melodies For Classical Guitar.</p>
+
+        <p><strong>Anders Mouridsen</strong></p>
+        <ul>
+            <li>Basic Rhythmic Subdivisions</li>
+            <li>Strumming Patterns</li>
+            <li>8th Notes & Upstrokes</li>
+            <li>Metronome Practice</li>
+        </ul>
+        <h2>CHAPTER: 3: PLAYING MELODIES</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/watch?v=MlV6WhM9YhE&list=PLlwfspJqZ126JHOY5rTkKCSAp2Ua907-v&index=4&ab_channel=JustinGuitar"
+
+        <p>In this chapter you will learn the major scale, the pentatonic scale, musical alphabet note letter names and
+            locations. After that you'll learn to play a variety of beginner level single note melodies. Also included
+            are finger exercises to increase your strength and dexterity.</p>
+
+        <table>
+            <caption>ARTIST / TITLE / PROGRESS</caption>
+            <tr>
+                <th>INSTRUCTOR</th>
+                <th>DIFFICULTY</th>
+                <th>STYLE</th>
+            </tr>
+            <tr>
+                <td>Anders Mouridsen</td>
+                <td>BEGIN</td>
+                <td>Any Style</td>
+            </tr>
+        </table>
+
+        <p><strong>Recommended Songs</strong></p>
+        <p>Practice your new single-note skills with these melodies: The Star Spangled Banner, Simple Melodies for
+            Classical Guitar, More Simple Melodies For Classical Guitar.</p>
+
+        <p><strong>Anders Mouridsen</strong></p>
+        <ul>
+            <li>One Scale, Thousands of Melodies</li>
+            <li>Extending The Major Scale</li>
+            <li>The Minor Pentatonic Scale</li>
+            <li>Learning Note Names</li>
+            <li>Fun Finger Exercises</li>
+        </ul>
+    </section>
+    <footer>
+        <!-- 6 Columns Footer -->
+        <div class="footer-columns block">
+            <!-- Content for six columns footer goes here -->
+            <div class="column">
+                <h3>Contact Us</h3>
+                <p>Feel free to reach out for any inquiries or feedback.</p>
+            </div>
+            <div class="column">
+                <h3>Follow Us</h3>
+                <p>Connect with us on social media for updates.</p>
+            </div>
+            <div class="column">
+                <h3>Terms of Service</h3>
+                <p>Read our terms and conditions for using the platform.</p>
+            </div>
+            <div class="column">
+                <h3>Privacy Policy</h3>
+                <p>Learn about how we handle your personal information.</p>
+            </div>
+            <div class="column">
+                <h3>FAQs</h3>
+                <p>Find answers to frequently asked questions.</p>
+            </div>
+            <div class="column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for the latest updates.</p>
+            </div>
+
+        </div>
+
+        <!-- Last Footer -->
+        <div class="last-footer block">
+            <!-- Content for the last footer goes here -->
+            <p>&copy; 2024 Instrumental Music Education. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

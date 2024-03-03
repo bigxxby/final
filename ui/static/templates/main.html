@@ -15,11 +15,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="lessons/lessons.html">Lessons</a></li>
-                <li><a href="practice/practice.html">Practice</a></li>
-                <li><a href="#">Virtual Lessons</a></li>
-                <li><a href="#">Progress Tracker</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/metronome">Metronome</a></li>
+                
+                <li><a href="/chord">Chord Trainer</a></li>
                 <li><a href="/profile">
                     Your Profile:
                     {{if .IsLogged}}
@@ -27,6 +26,7 @@
                         <p>{{ .Name }}</p>
                         <p>{{ .Surname }}</p>
                         <p>{{ .Email }}</p>
+                        <li><a href="/guitar">Virtual Lessons</a></li>
                     </div>
                     {{else}}
                     <p> Unauthorised </p>
