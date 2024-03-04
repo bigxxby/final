@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/main.css">
     <title>Instrumental Music Education</title>
 </head>
+
 <body>
     <script src="static/scripts/main.js"></script>
     <header>
@@ -17,24 +19,24 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/metronome">Metronome</a></li>
-                
+
                 <li><a href="/chord">Chord Trainer</a></li>
                 <li><a href="/profile">
-                    Your Profile:
-                    {{if .IsLogged}}
-                    <div class="isLogged">
-                        <p>{{ .Name }}</p>
-                        <p>{{ .Surname }}</p>
-                        <p>{{ .Email }}</p>
-                        <li><a href="/guitar">Virtual Lessons</a></li>
-                    </div>
-                    {{else}}
-                    <p> Unauthorised </p>
-                    {{end}}
+                        Your Profile:
+                        {{if .IsLogged}}
+                        <div class="isLogged">
+                            <p>{{ .Name }}</p>
+                            <p>{{ .Surname }}</p>
+                            <p>{{ .Email }}</p>
+                <li><a href="/guitar">Virtual Lessons</a></li>
+                </div>
+                {{else}}
+                <p> Unauthorised </p>
+                {{end}}
 
                 </a></li>
 
-                
+
                 <li><a href="/login">Sign Up</a></li>
                 <li><a href="/reg">Sign In</a></li>
             </ul>
@@ -44,64 +46,76 @@
     <!-- Main Content Section -->
     <section class="main-section block">
         <h2>Welcome to Instrumental Music Education</h2>
-        <p>This platform is designed to help aspiring musicians, music students, and educators in learning and teaching instrumental music. Whether you're a beginner or an experienced player, we have lessons and resources tailored to your needs.</p>
+        <p>This platform is designed to help aspiring musicians, music students, and educators in learning and teaching
+            instrumental music. Whether you're a beginner or an experienced player, we have lessons and resources
+            tailored to your needs.</p>
     </section>
 
     <!-- 3 Columns of Different Width -->
-   <!-- 3 Columns of Different Width -->
-<section class="three-columns-different-width block">
-    <!-- Content for three columns goes here -->
-    <div class="column wide">
-        <h3>Exploring Instruments</h3>
-        <p>Delve into the diverse world of musical instruments. Learn about the history, techniques, and unique characteristics of different instruments, from classical to contemporary.</p>
-    </div>
-    <div class="column narrow">
-        <h3>Mastering Techniques</h3>
-        <p>Refine your playing techniques with expert guidance. Explore intricate fingerpicking patterns, chord progressions, and advanced playing styles to elevate your musical proficiency.</p>
-    </div>
-    <div class="column medium">
-        <h3>Music Theory Fundamentals</h3>
-        <p>Build a strong foundation in music theory. Understand key concepts, notation, scales, and harmonies that will enhance your ability to read and create music.</p>
-    </div>
-</section>
+    <!-- 3 Columns of Different Width -->
+    <section class="three-columns-different-width block">
+        <!-- Content for three columns goes here -->
+        <div class="column wide">
+            <h3>Exploring Instruments</h3>
+            <p>Delve into the diverse world of musical instruments. Learn about the history, techniques, and unique
+                characteristics of different instruments, from classical to contemporary.</p>
+        </div>
+        <div class="column narrow">
+            <h3>Mastering Techniques</h3>
+            <p>Refine your playing techniques with expert guidance. Explore intricate fingerpicking patterns, chord
+                progressions, and advanced playing styles to elevate your musical proficiency.</p>
+        </div>
+        <div class="column medium">
+            <h3>Music Theory Fundamentals</h3>
+            <p>Build a strong foundation in music theory. Understand key concepts, notation, scales, and harmonies that
+                will enhance your ability to read and create music.</p>
+        </div>
+    </section>
 
-<!-- 3 Columns of Same Width -->
-<section class="three-columns-same-width block">
-    <!-- Content for three columns goes here -->
-    <div class="column">
-        <h3>Practice Sessions</h3>
-        <p>Dedicate time to focused practice sessions tailored to your skill level. Our interactive modules provide exercises and drills to strengthen your musical skills and boost confidence.</p>
-    </div>
-    <div class="column">
-        <h3>Virtual Classroom Experience</h3>
-        <p>Immerse yourself in virtual lessons led by experienced instructors. Receive personalized feedback, ask questions, and engage with a supportive community of fellow learners.</p>
-    </div>
-    <div class="column">
-        <h3>Progress Tracking Tools</h3>
-        <p>Monitor your musical journey with our progress tracking tools. Set goals, track achievements, and celebrate milestones as you progress through your courses and lessons.</p>
-    </div>
-</section>
+    <!-- 3 Columns of Same Width -->
+    <section class="three-columns-same-width block">
+        <!-- Content for three columns goes here -->
+        <div class="column">
+            <h3>Practice Sessions</h3>
+            <p>Dedicate time to focused practice sessions tailored to your skill level. Our interactive modules provide
+                exercises and drills to strengthen your musical skills and boost confidence.</p>
+        </div>
+        <div class="column">
+            <h3>Virtual Classroom Experience</h3>
+            <p>Immerse yourself in virtual lessons led by experienced instructors. Receive personalized feedback, ask
+                questions, and engage with a supportive community of fellow learners.</p>
+        </div>
+        <div class="column">
+            <h3>Progress Tracking Tools</h3>
+            <p>Monitor your musical journey with our progress tracking tools. Set goals, track achievements, and
+                celebrate milestones as you progress through your courses and lessons.</p>
+        </div>
+    </section>
 
-<!-- 4 Columns Section -->
-<section class="four-columns-section block">
-    <!-- Content for four columns goes here -->
-    <div class="column wide">
-        <h3>Musical Exploration</h3>
-        <p>Embark on a journey of musical exploration. Dive into different genres, discover the cultural influences behind each style, and broaden your musical horizons.</p>
-    </div>
-    <div class="column narrow">
-        <h3>Community Collaboration</h3>
-        <p>Connect with fellow musicians and educators in our vibrant community. Collaborate on projects, share insights, and build lasting relationships with like-minded individuals.</p>
-    </div>
-    <div class="column medium">
-        <h3>Creative Composition</h3>
-        <p>Unlock your creativity through composition. Learn the art of creating your own music, experiment with songwriting, and express your unique musical voice.</p>
-    </div>
-    <div class="column">
-        <h3>Expert-Led Workshops</h3>
-        <p>Participate in workshops led by industry experts. Gain valuable insights, learn advanced techniques, and stay updated on the latest trends in the world of instrumental music.</p>
-    </div>
-</section>
+    <!-- 4 Columns Section -->
+    <section class="four-columns-section block">
+        <!-- Content for four columns goes here -->
+        <div class="column wide">
+            <h3>Musical Exploration</h3>
+            <p>Embark on a journey of musical exploration. Dive into different genres, discover the cultural influences
+                behind each style, and broaden your musical horizons.</p>
+        </div>
+        <div class="column narrow">
+            <h3>Community Collaboration</h3>
+            <p>Connect with fellow musicians and educators in our vibrant community. Collaborate on projects, share
+                insights, and build lasting relationships with like-minded individuals.</p>
+        </div>
+        <div class="column medium">
+            <h3>Creative Composition</h3>
+            <p>Unlock your creativity through composition. Learn the art of creating your own music, experiment with
+                songwriting, and express your unique musical voice.</p>
+        </div>
+        <div class="column">
+            <h3>Expert-Led Workshops</h3>
+            <p>Participate in workshops led by industry experts. Gain valuable insights, learn advanced techniques, and
+                stay updated on the latest trends in the world of instrumental music.</p>
+        </div>
+    </section>
 
     <!-- "In Case You Missed It" Section -->
     <section class="missed-it-section block">
@@ -123,25 +137,29 @@
             </div>
         </div>
     </section>
-    <div  class="chatbot-container">
+    <!-- Chatbot Container -->
+<div class="chatbot-container">
 
-            <div  class="chatbot-header">
-                <span class="chatbot-title">Chatbot</span>
-                <button class="chatbot-toggle-btn" onclick="toggleChatbot()">X</button>
-            </div>
-            <div class="chatbot-body" id="chatbot-body">
-                <!-- Chatbot messages will appear here -->
-                MusicAiBot: Hello! How can i assist you?
-                MusicAiBot: Ask any question
-                
-
-            </div>
-            <div id="chatbot-footer" class="chatbot-footer">
-                <input type="text" id="user-input" placeholder="Type your message...">
-                <button type="submit" onclick="sendMessage()">Send</button>
-            </div>
+    <!-- Chatbot Header -->
+    <div class="chatbot-header">
+        <span class="chatbot-title">Chatbot</span>
+        <button class="chatbot-toggle-btn" onclick="toggleChatbot()">X</button>
     </div>
-    
+
+    <!-- Chatbot Body -->
+    <div class="chatbot-body" id="chatbot-body">
+        MusicAiBot: Hello how can i help you?
+        MusicAiBot: Ask anything you want!
+    </div>
+
+    <!-- Chatbot Footer -->
+    <div id="chatbot-footer" class="chatbot-footer">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button type="submit" onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+
     <!-- Footer -->
     <footer>
         <!-- 6 Columns Footer -->
@@ -181,4 +199,5 @@
         </div>
     </footer>
 </body>
+
 </html>

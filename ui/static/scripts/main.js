@@ -1,3 +1,12 @@
+const socket = new WebSocket('ws://localhost:8080/test');
+
+socket.onopen = function(event) {
+    console.log('Соединение установлено');
+};
+
+socket.onmessage = function(event) {
+    console.log('Получено сообщение от сервера:', event.data);
+};
 function toggleChatbot() {
 
     let element = document.getElementById('chatbot-body')
@@ -38,39 +47,46 @@ function sendMessage() {
 
 
 function sendMessageToServer(message) {
-    // URL, на который будет отправлено сообщение
     let url = '/message';
-
-    // Данные для отправки на сервер (в данном случае, просто текст сообщения)
     let data = {
         message: message
     };
-
-    // Опции запроса
     let options = {
-        method: 'POST', // метод запроса
+        method: 'POST',
         headers: {
-            'Content-Type': 'application/json' // тип данных, отправляемых на сервер (JSON)
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data) // преобразуем объект в JSON-строку
+        body: JSON.stringify(data)
     };
 
-    // Отправка запроса на сервер с использованием Fetch API
     fetch(url, options)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json(); // разбираем ответ сервера в формате JSON
+            return response.json();
         })
         .then(data => {
-            // Обработка ответа сервера (если требуется)
-            console.log('Server response:', data);
+            // Обновляем DOM с полученными данными
+            updateChat(data.message);
         })
         .catch(error => {
-            // Обработка ошибок при отправке запроса
             console.error('There was a problem with your fetch operation:', error);
         });
 }
+
+function updateChat(message) {
+    // Получаем элемент, куда будем добавлять сообщение от сервера
+    let chatbotBody = document.getElementById('chatbot-body');
+
+    // Создаем новый элемент для сообщения от сервера
+    let serverMessageElement = document.createElement('div');
+    serverMessageElement.classList.add('server-message');
+    serverMessageElement.innerText = "MusicAiBot: " + message;
+
+    // Добавляем сообщение от сервера в чат
+    chatbotBody.appendChild(serverMessageElement);
+}
+
 
 

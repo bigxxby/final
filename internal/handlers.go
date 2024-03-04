@@ -10,6 +10,8 @@ import (
 	"text/template"
 
 	"test/internal/myDatabase"
+
+	"github.com/gorilla/websocket"
 )
 
 var db = myDatabase.NewDatabase("myDatabase.db")
@@ -248,26 +250,160 @@ func MessageHandler(w http.ResponseWriter, r *http.Request) {
 	// Отправляем запрос к Wit.ai
 	client := http.DefaultClient
 	resp, err := client.Do(req)
+	body, err = ioutil.ReadAll(resp.Body)
 	if err != nil {
-		http.Error(w, "Failed to send request to Wit.ai", http.StatusInternalServerError)
+		fmt.Println("Error reading response body:", err)
 		return
 	}
-	defer resp.Body.Close()
 
-	// Декодируем ответ от Wit.ai
-	var witResponse WitResponse
-	if err := json.NewDecoder(resp.Body).Decode(&witResponse); err != nil {
-		http.Error(w, "Failed to decode response from Wit.ai", http.StatusInternalServerError)
+	var response Response
+	err = json.Unmarshal(body, &response)
+	if err != nil {
+		fmt.Println("Error decoding JSON:", err)
 		return
 	}
-	log.Println("Response : ", witResponse)
-	// Выводим текст ответа от Wit.ai
-	fmt.Fprintf(w, "Wit.ai response: %s\n", witResponse.Text)
+	fmt.Println("FULL: ", string(body))
+	fmt.Println("Intents: ", response.Intents)
+	fmt.Println("Text:", response.Text)
+	fmt.Println("Greetings Confidence:", response.Traits.Greetings)
+	fmt.Println("Sentiment Value:", response.Traits.Sentiment)
+	fmt.Println("Bye Value:", response.Traits.Bye)
+	value := CheckTraits(&response) // ЭТО СООБЗЕНИЕ НАДО ОТПРАВИТЬ НА ФРОНТ
 
-	// Отправляем ответ клиенту
-	// w.WriteHeader(http.StatusOK) // Убираем эту строку, так как WriteHeader уже вызван в Fprintf
-	// w.Write([]byte("Message received successfully")) // Эту строку тоже убираем
+	if value == "404" {
+		value = "I'm sorry, I didn't understand your request. Please Contact our Support team."
+	} else if value == "negative" {
+		value = "I understand that you're feeling negative about this. Let's see if I can help you in any other way."
+	} else if value == "greetings" {
+		value = "Hello there! Welcome to our platform. How can I assist you today?"
+
+	} else if value == "bye" {
+		value = "Thank you for chatting with me. If you have any more questions or need assistance in the future, feel free to reach out"
+
+	} else if value == "thanks" {
+		value = "You're welcome! If you have any more questions or need further assistance, don't hesitate to ask. Have a wonderful day!"
+
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	// пример JSON-структуры, которую вы хотите отправить
+	response2 := struct {
+		Message string `json:"message"`
+	}{
+		Message: value,
+	}
+
+	// кодируем JSON и отправляем его обратно на клиент
+	json.NewEncoder(w).Encode(response2)
 }
+
+func CheckTraits(response *Response) string {
+	if len(response.Traits.Sentiment) > 0 {
+		for _, sentiment := range response.Traits.Sentiment {
+			if sentiment.Value == "negative" {
+
+				return "negative"
+			}
+		}
+	}
+	if len(response.Traits.Greetings) > 0 {
+		for _, sentiment := range response.Traits.Greetings {
+			if sentiment.Value == "true" && sentiment.Confidence > 0.9 {
+				return "greetings"
+			}
+		}
+	}
+	if len(response.Traits.Thanks) > 0 {
+		for _, sentiment := range response.Traits.Thanks {
+			if sentiment.Value == "true" && sentiment.Confidence > 0.9 {
+				return "thanks"
+			}
+		}
+	}
+	if len(response.Traits.Bye) > 0 {
+		for _, sentiment := range response.Traits.Bye {
+			if sentiment.Value == "true" && sentiment.Confidence > 0.9 {
+				return "bye"
+			}
+		}
+	}
+	return "404"
+
+}
+
+var upgrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+}
+
+func HandleFunc(w http.ResponseWriter, r *http.Request) {
+	conn, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		fmt.Println("Upgrade error:", err)
+		return
+	}
+	defer conn.Close()
+
+	for {
+		// Прочитать сообщение от клиента
+		messageType, p, err := conn.ReadMessage()
+		if err != nil {
+			fmt.Println("Read error:", err)
+			break
+		}
+
+		// Вывести полученное сообщение на серверной стороне
+		fmt.Printf("Received message: %s\n", p)
+
+		// Отправить сообщение обратно клиенту
+		err = conn.WriteMessage(messageType, p)
+		if err != nil {
+			fmt.Println("Write error:", err)
+			break
+		}
+	}
+}
+
+func TestHandler(w http.ResponseWriter, r *http.Request) {
+	conn, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	defer conn.Close()
+
+	// Отправка сообщения на клиент при необходимости
+	err = conn.WriteMessage(websocket.TextMessage, []byte("Привет, клиент!"))
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	// upgrader.Upgrade(w, )
+}
+
+type Response struct {
+	Entities map[string]interface{} `json:"entities"`
+	Intents  []interface{}          `json:"intents"`
+	Text     string                 `json:"text"`
+	Traits   struct {
+		Greetings []Trait `json:"wit$greetings"`
+		Bye       []Trait `json:"wit$bye"`
+		Sentiment []Trait `json:"wit$sentiment"`
+		Thanks    []Trait `json:"wit$thanks"`
+	} `json:"traits"`
+}
+type Trait struct {
+	Confidence float64 `json:"confidence"`
+	ID         string  `json:"id"`
+	Value      string  `json:"value"`
+}
+type Intents struct {
+	Confidence float64 `json:"confidence"`
+	ID         string  `json:"id"`
+	Name       string  `json:"name"`
+}
+
 func ChordHandler(w http.ResponseWriter, r *http.Request) {
 	data, err := template.ParseFiles("ui/static/templates/chordPanel.html")
 	if err != nil {

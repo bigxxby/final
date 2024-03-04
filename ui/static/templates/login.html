@@ -3,17 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Login Form</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-    <form action="/login" method="POST">
+    <form id="loginForm" action="/login" method="POST">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
         <input type="submit" value="Login">
     </form>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+            var formData = new FormData(this);
+
+            // Fetch request to submit form data
+            fetch(this.action, {
+                method: this.method,
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Login successful!"); // You can replace this with your desired action
+                    // Redirect or perform other actions as needed
+                } else {
+                    alert("Login failed. Please check your credentials."); // You can replace this with your desired action
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while processing your request."); // You can replace this with your desired action
+            });
+        });
+    </script>
 </body>
 </html>
